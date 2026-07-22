@@ -1,0 +1,29 @@
+package main
+
+import "github.com/01-edu/z01"
+
+func PrintNbr(n int) {
+	if n < 0 {
+		z01.PrintRune('-')
+		n *= -1
+	}
+	if n >= 10 {
+		PrintNbr(n / 10)
+
+	}
+
+	z01.PrintRune(rune(n%10 + '0'))
+}
+
+func main() {
+	PrintNbr(-1)
+	z01.PrintRune('\n')
+	PrintNbr(0)
+	z01.PrintRune('\n')
+	PrintNbr(9)
+	z01.PrintRune('\n')
+	PrintNbr(123)
+	z01.PrintRune('\n')
+	PrintNbr(-123)
+	z01.PrintRune('\n')
+}
