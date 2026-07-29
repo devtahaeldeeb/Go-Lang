@@ -3,17 +3,17 @@ package main
 import "github.com/01-edu/z01"
 
 func PrintCombN(n int) {
-	if n <= 0 || n >= 10 {
+	if n < 0 || n >= 10 {
 		return
 	}
 
-	backtrack(n, []int{})
+	BackTrack([]int{}, n)
 }
 
-func backtrack(n int, current []int) {
+func BackTrack(current []int, n int) {
 	if len(current) == n {
-		for _, digit := range current {
-			z01.PrintRune(rune(digit + '0'))
+		for _, c := range current {
+			z01.PrintRune(rune(c + '0'))
 		}
 
 		if current[0] != 10-n {
@@ -28,30 +28,13 @@ func backtrack(n int, current []int) {
 		start = current[len(current)-1] + 1
 	}
 
-	for i := start; i <= 9; i++ {
+	for i := start; i < 10; i++ {
 		current = append(current, i)
-
-		backtrack(n, current)
-
+		BackTrack(current, n)
 		current = current[:len(current)-1]
 	}
 }
 
 func main() {
-	// PrintCombN(-4)
-	// z01.PrintRune('\n')
-	// PrintCombN(-2)
-	// z01.PrintRune('\n')
-	PrintCombN(1)
-	z01.PrintRune('\n')
-	PrintCombN(0)
-	z01.PrintRune('\n')
-	PrintCombN(-1)
-	z01.PrintRune('\n')
-	PrintCombN(2)
-	z01.PrintRune('\n')
 	PrintCombN(3)
-	z01.PrintRune('\n')
-	PrintCombN(6)
-	z01.PrintRune('\n')
 }
